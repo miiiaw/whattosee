@@ -40,7 +40,6 @@ export default function Home() {
         {movies?.map((movie, index) =>
         <article key={index}>
             <h1>{movie.title}</h1>
-            <h2>{movie.genre[0]._key}</h2>
             <h3>{movie.imdb_id}</h3>
         </article>)}
         </>

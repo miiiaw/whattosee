@@ -4,6 +4,6 @@ export async function fetchAllMovies() {
     const data = await sanityClient.fetch(`*[_type == "movie"]{
         title,
         imdb_id,
-        genre}`)
+        genre[]->}`)
     return data
 }
