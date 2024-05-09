@@ -40,6 +40,5 @@ export default defineType({
               type: 'genre'},
       }],
   }),
-
   ],
 })

@@ -32,15 +32,14 @@ export default function Home() {
     }, [])
 
 
-    console.log(movies)
+    console.log(genres)
 
     return (
         <>
         <h1>Movies</h1>
-        {movies?.map((movie, index) =>
+        {genres?.map((genre, index) =>
         <article key={index}>
-            <h1>{movie.title}</h1>
-            <h3>{movie.imdb_id}</h3>
+            <h1>{genre.title}</h1>
         </article>)}
         </>
     )
