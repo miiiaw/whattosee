@@ -4,43 +4,50 @@ import { fetchAllGenres } from "../../sanity/services/genreService"
 import { fetchAllUsers } from "../../sanity/services/userService"
 
 export default function Home() {
+    const [movies, setMovies] = useState([])
+    const [genres, setGenres] = useState([])
+    const [users, setUsers] = useState([])
 
-    const [movies, setMovies] = useState(null)
-    const [genres, setGenres] = useState(null)
-    const [users, setUsers] = useState(null)
-
+    const [spesUser, setSpesUser] = useState(null)
 
     const getAllMovies = async () => {
         const data = await fetchAllMovies()
         setMovies(data)
-    }
+    };
 
     const getAllGenres = async () => {
         const data = await fetchAllGenres()
         setGenres(data)
-    }
+    };
 
     const getAllUsers = async () => {
         const data = await fetchAllUsers()
         setUsers(data)
-    }
+    };
 
     useEffect(() => {
         getAllMovies()
         getAllGenres()
         getAllUsers()
-    }, [])
+    }, []);
 
-
-    console.log(genres)
+    useEffect(() => {
+        const name = users.find(user => user.name === "Mia")
+        name ? setSpesUser(name) : null
+    }, [users])
 
     return (
         <>
         <h1>Movies</h1>
-        {genres?.map((genre, index) =>
-        <article key={index}>
-            <h1>{genre.title}</h1>
-        </article>)}
+        <article>
+            <h1>{spesUser?.name}</h1>
+            {spesUser?.wishlist.map((movie, index) => (
+              <div key={index}>
+              <h2>{movie.title}</h2>
+              <span>{movie.imdb_id}</span>
+              </div>
+            ))}
+        </article>
         </>
     )
 }
