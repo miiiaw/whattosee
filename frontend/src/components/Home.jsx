@@ -1,53 +1,43 @@
 import { useEffect, useState } from "react"
-import { fetchAllMovies } from "../../sanity/services/movieService"
-import { fetchAllGenres } from "../../sanity/services/genreService"
-import { fetchAllUsers } from "../../sanity/services/userService"
+import { Link } from "react-router-dom"
+import MovieCard from "./MovieCard"
 
-export default function Home() {
-    const [movies, setMovies] = useState([])
-    const [genres, setGenres] = useState([])
-    const [users, setUsers] = useState([])
+export default function Home({ users, chosenPerson }) {
 
+    // useState for the specified user
     const [spesUser, setSpesUser] = useState(null)
-
-    const getAllMovies = async () => {
-        const data = await fetchAllMovies()
-        setMovies(data)
-    };
-
-    const getAllGenres = async () => {
-        const data = await fetchAllGenres()
-        setGenres(data)
-    };
-
-    const getAllUsers = async () => {
-        const data = await fetchAllUsers()
-        setUsers(data)
-    };
-
+    // using .find() to fetch and store the array with the right userinfo
     useEffect(() => {
-        getAllMovies()
-        getAllGenres()
-        getAllUsers()
-    }, []);
-
-    useEffect(() => {
-        const name = users.find(user => user.name === "Mia")
+        const name = users.find(user => user.name === chosenPerson)
         name ? setSpesUser(name) : null
     }, [users])
 
+
     return (
         <>
-        <h1>Movies</h1>
-        <article>
-            <h1>{spesUser?.name}</h1>
-            {spesUser?.wishlist.map((movie, index) => (
-              <div key={index}>
-              <h2>{movie.title}</h2>
-              <span>{movie.imdb_id}</span>
-              </div>
+        <h1>Hello, {chosenPerson}</h1>
+        <section className="homePageSection">
+            <h2>Who do you want to watch with?</h2>
+            <ul>
+            {users?.filter(user => user.name !== chosenPerson).map((user, index) => (
+                <Link to="" key={index}>
+                <li>{user.name}</li>
+                </Link>
             ))}
-        </article>
+            </ul>
+        </section>
+        <section className="homePageSection">
+            <h2>Your favorite movies</h2>
+            {spesUser?.favoriteMovies.map((movie, index) => (
+                <MovieCard key={index} movie={movie} />
+            ))}
+        </section>
+        <section className="homePageSection">
+            <h2>Your wishlist</h2>
+            {spesUser?.wishlist.map((movie, index) => (
+                <MovieCard key={index} movie={movie} />
+            ))}
+        </section>
         </>
     )
 }

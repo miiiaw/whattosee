@@ -1,4 +1,5 @@
 @import 'header';
+@import 'home';
 @import 'comparisonPage';
 @import 'genrePage';
 @import 'genresCollection';
@@ -11,21 +12,50 @@ body{
     padding: 0px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 12px;
+    max-width: 550px;
     #container{
-        margin: 0px;
-        padding: 0px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        width: 100%;
+        main{
+            padding: 10px;
+            .genresPage{
+                ul{
+                    margin: 0px;
+                    padding: 0px;
+                    list-style-type: none;
+                    max-width: 80%;
+                    a{
+                        color: #d4f4fb;
+                        text-decoration: none;
+                        :hover{
+                            font-size: 1.4rem;
+                        }
+                    }
+                    li{
+                        margin: 16px 0px 16px 0px;
+                        padding: 16px;
+                        background-color: #4793AF;
+                        text-transform: uppercase;
+                        font-size: 1.2rem;
+                        border-radius: 12px;
+                        border: 4px dotted #FFC470;
+                    }
+                }
+            }
+        }
     }
     h1{
         color: #4793AF;
         font-size: 1.4rem;
         text-transform: uppercase;
+        width: 100%;
     }
     h2{
         font-size: 1.1rem;
         text-transform: uppercase;
+        width: 100%;
     }
     h3{
         font-size: 0.9rem;

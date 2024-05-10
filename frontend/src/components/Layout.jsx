@@ -1,12 +1,13 @@
+import { Outlet } from 'react-router-dom'
 import Header from './Header'
 
-export default function Layout({ children }) {
+export default function Layout({ chosenPerson }) {
     return (
         <>
         <div id="container">
-            <Header />
+            <Header chosenPerson={chosenPerson} />
             <main>
-                {children}
+                <Outlet />
             </main>
         </div>
         </>
