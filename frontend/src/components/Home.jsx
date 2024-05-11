@@ -20,7 +20,7 @@ export default function Home({ users, chosenPerson }) {
             <h2>Who do you want to watch with?</h2>
             <ul>
             {users?.filter(user => user.name !== chosenPerson).map((user, index) => (
-                <Link to="" key={index}>
+                <Link to={`/comparisonPage/${user.name}`} key={index}>
                 <li>{user.name}</li>
                 </Link>
             ))}

@@ -45,7 +45,7 @@ function App() {
 
         <Route element={<Layout chosenPerson={chosenPerson} />} >
           <Route element={<Home users={users} chosenPerson={chosenPerson} />} path='/home' />
-          <Route element={<ComparisonPage />} path='/comparisonPage' />
+          <Route element={<ComparisonPage users={users} chosenPerson={chosenPerson} />} path='/comparisonPage/:person' />
           <Route element={<GenresCollection />} path='/genresCollection' />
           <Route element={<GenrePage movies={movies} />} path='/genrePage/:movieGenre' />
         </Route>
