@@ -14,18 +14,17 @@ export default function Genre({ movies }) {
     }, [movieGenre])
 
 
-
     return (
         <>
         <h1>Movies in the {movieGenre} genre</h1>
         <section className="genrePageSection">
-            <h2>List of movies:</h2>
+            <h2>{`List of movies: (${genreMovies.length})`}</h2>
             {genreMovies.length > 0 ? (
                 genreMovies.map((movie, index) => (
                 <MovieCard key={index} movie={movie} />
                 ))
             ) : (
-            <p>We have no movies in that genre yet!</p>)
+            <p>Upsie! You have no movies added in that genre - yet!</p>)
             }
         </section>
         </>

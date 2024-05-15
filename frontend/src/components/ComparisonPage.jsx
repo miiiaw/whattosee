@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import MovieCard from "./MovieCard"
+import AListMovieCard from "./AListMovieCard"
 
 export default function ComparisonPage({ users, chosenPerson }) {
 
@@ -45,28 +47,57 @@ export default function ComparisonPage({ users, chosenPerson }) {
     const genreList = genreItems1?.filter(item1 =>
         genreItems2?.some(item2 => item2.title === item1.title))
 
+    // The A-list
+    const newList = favoriteItems1
+        ?.filter(item1 => 
+        wishlistItems2?.some(item2 => item2.title === item1.title) &&
+        !wishlistMoviesList?.some(movie => movie.title === item1.title) &&
+        !favoriteMoviesList?.some(movie => movie.title === item1.title))
+        ?.map(movie => ({ ...movie, fromUser: chosenPerson, listType: 'Favorite'}))
+
+    const newList2 = favoriteItems2
+        ?.filter(item1 =>
+        wishlistItems1?.some(item2 => item2.title === item1.title) &&
+        !wishlistMoviesList?.some(movie => movie.title === item1.title) &&
+        !favoriteMoviesList?.some(movie => movie.title === item1.title))
+        ?.map(movie => ({ ...movie, fromUser: person, listType: 'Favorites 2'}))
+
+
+    const theAList = newList.concat(newList2)
+
+    console.log(theAList)
 
     return (
         <>
         <h1>Matching movies for {person} and  {chosenPerson}</h1>
 
-        <section>
-            <h2>Favorite movies</h2>
-            {favoriteMoviesList?.map((movie, index) => 
-            <MovieCard key={index} movie={movie}/>)}
+        <section className="comparisonPage">
+            <h2>The A list</h2>
+            {theAList?.map((movie, index) => 
+            <AListMovieCard key={index} movie={movie}/>)}
         </section>
 
-        <section>
-            <h2>Movies on the wishlist</h2>
+        <section className="comparisonPage">
+            <h2>Catch up!</h2>
             {wishlistMoviesList?.map((movie, index) => 
             <MovieCard key={index} movie={movie}/>)}
         </section>
 
-        <section>
-            <h2>Favorite genres</h2>
+
+        <section className="comparisonPage">
+            <h2>Go safe!</h2>
+            {favoriteMoviesList?.map((movie, index) => 
+            <MovieCard key={index} movie={movie}/>)}
+        </section>
+
+
+        <section className="comparisonPage">
+            <h2>Explore</h2>
             <ul>
-            {genreList?.map((genre, index) => 
-            <li key={index}>{genre.title}</li> )}
+                {genreList?.map((genre, index) => 
+                <li key={index}>
+                    <Link to={`/genrePage/${genre.title}` }>{genre.title}</Link>
+                </li> )}
             </ul>
         </section>
         </>

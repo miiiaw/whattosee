@@ -28,16 +28,25 @@ export default function GenresCollection({ chosenPerson, users }) {
 
     // Function for updating Sanity
     const handleSubmit = async (genreId) => {
-        console.log(genreId)
+        //console.log(genreId)
         if (!loggedInUser) {
             console.error("No logged in user")
             return
         }
+
+        //console.log(loggedInUser.name)
         const result = await updateGenres(loggedInUser._id, genreId)
-        console.log(result)
+        //console.log(result)
+
+        setLoggedInUser(result[0])
     }
 
 
+    const addedGenre = (genreTitle) => {
+        return loggedInUser?.favoriteGenre?.some(g => g.title === genreTitle);
+    }
+
+    //console.log(loggedInUser)
 
     
     return (
@@ -49,7 +58,9 @@ export default function GenresCollection({ chosenPerson, users }) {
                     <Link to={`/genrePage/${genre.title}` } >
                         <h2>{genre.title}</h2>
                     </Link>
-                    <button onClick={() => handleSubmit(genre._id)}>Add genre</button>
+                    <button onClick={() => handleSubmit(genre._id)}>
+                    {addedGenre(genre.title) ? 'Added' : 'Add to favorites'}
+                    </button>
                 </article>
                 )}
         </section>

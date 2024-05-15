@@ -10,13 +10,13 @@ export default function Header({ chosenPerson }) {
                 </span>
                 <ul>
                     <li>
-                        <Link to="/home">Home</Link>
+                        <Link to="/home" className="seeLink">What shall I see?</Link>
                     </li>
                     <li>
-                        <Link to="/genresCollection">GenresCollection</Link>
+                        <Link to="/genresCollection">Browse genres</Link>
                     </li>
                     <li>
-                    <Link to="/">{chosenPerson}</Link>
+                    <Link to="/">Logged in as: {chosenPerson}</Link>
                     </li>
                 </ul>
             </nav>

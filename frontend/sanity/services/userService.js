@@ -13,13 +13,22 @@ export async function fetchAllUsers() {
 
 export async function updateGenres(userId, genreId) {
     try {
-        const result = await writeClient
+        await writeClient
             .patch(userId)
             .setIfMissing({favoriteGenre: []})
             .append("favoriteGenre", [{ _type: 'reference', _ref: genreId }])
             .commit({autoGenerateArrayKeys: true});
-        console.log("Update success:", result);
-        return "Success";
+        
+        const updatedInfo = await sanityClient.fetch(`*[_id == $userId]{
+            _id,
+            name,
+            favoriteMovies[]->,
+            wishlist[]->,
+            favoriteGenre[]->}`,
+            { userId }
+        )
+        console.log("Update success:", updatedInfo);
+        return updatedInfo;
     } catch (error) {
         console.error("Update failed:", error);
         return "Error " + error.message;

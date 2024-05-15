@@ -20,30 +20,6 @@ body{
         width: 100%;
         main{
             padding: 10px;
-            .genresPage{
-                ul{
-                    margin: 0px;
-                    padding: 0px;
-                    list-style-type: none;
-                    max-width: 80%;
-                    a{
-                        color: #d4f4fb;
-                        text-decoration: none;
-                        :hover{
-                            font-size: 1.4rem;
-                        }
-                    }
-                    li{
-                        margin: 16px 0px 16px 0px;
-                        padding: 16px;
-                        background-color: #4793AF;
-                        text-transform: uppercase;
-                        font-size: 1.2rem;
-                        border-radius: 12px;
-                        border: 4px dotted #FFC470;
-                    }
-                }
-            }
         }
     }
     h1{
@@ -61,4 +37,17 @@ body{
         font-size: 0.9rem;
         text-transform: capitalize;
     }
+    .seeLink{
+        padding: 6px;
+        background-color: #DD5746;
+        border-radius: 12px;
+    }
+}
+
+@media only screen and (min-width: 550px) {
+    body{
+        min-width: 550px;
+        max-width: 1200px;
+    }
+
 }

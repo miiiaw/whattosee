@@ -1,0 +1,15 @@
+body{
+    #container{
+        main{
+            .comparisonPage{
+                margin: 0px;
+                padding: 5px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+        }
+    }
+}

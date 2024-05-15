@@ -1,0 +1,47 @@
+body{
+    #container{
+        main{
+            .genresPage{
+                article{
+                    margin: 0px;
+                    padding: 0px;
+                    list-style-type: none;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+                    align-items: baseline;
+                    align-content: baseline;
+                    a{
+                        color: #d4f4fb;
+                        text-decoration: none;
+                        width: 50%;
+                        :hover{
+                            font-size: 1.4rem;
+                        }
+                        h2{
+                            margin: 16px 0px 16px 0px;
+                            padding: 10px;
+                            background-color: #4793AF;
+                            text-transform: uppercase;
+                            font-size: 1rem;
+                            border-radius: 12px;
+                            border: 4px dotted #FFC470;
+                        }
+                    }
+                    button{
+                        margin: 16px;
+                        padding: 10px;
+                        width: 20%;
+                        background-color: #DD5746;
+                        text-transform: uppercase;
+                        font-size: 1rem;
+                        border-radius: 12px;
+                        border: 4px dotted #FFC470;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

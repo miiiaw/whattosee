@@ -16,7 +16,7 @@ export default function Home({ users, chosenPerson }) {
     return (
         <>
         <h1>Hello, {chosenPerson}</h1>
-        <section className="homePageSection">
+        <section className="homePageSection watchWith" >
             <h2>Who do you want to watch with?</h2>
             <ul>
             {users?.filter(user => user.name !== chosenPerson).map((user, index) => (
