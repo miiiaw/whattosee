@@ -3,15 +3,16 @@ import { useParams } from "react-router-dom"
 import MovieCard from "./MovieCard"
 
 export default function Genre({ movies }) {
-
+    // Fetching the movie genre from the slug
     const {movieGenre} = useParams()
-
+    // Creating a useSTate for the genre movies
     const [genreMovies, setGenreMovies] = useState([])
 
+    // Using filter to run through movies, and sort out the ones with matching genre title using some.
     useEffect(() => {
         setGenreMovies(movies?.filter(movie =>
             movie.genre?.some(genre => genre.title === movieGenre)))
-    }, [movieGenre])
+    }, [movieGenre, movies])
 
 
     return (

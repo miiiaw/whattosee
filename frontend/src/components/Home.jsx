@@ -4,15 +4,15 @@ import MovieCard from "./MovieCard"
 
 export default function Home({ users, chosenPerson }) {
 
-    // useState for the specified user
+    // useState for the array of the chosen person
     const [spesUser, setSpesUser] = useState(null)
     // using .find() to fetch and store the array with the right userinfo
     useEffect(() => {
         const name = users.find(user => user.name === chosenPerson)
         name ? setSpesUser(name) : null
-    }, [users])
+    }, [users, chosenPerson])
 
-
+    // Under: Using filter and map to show the users, and the movies with MovieCard
     return (
         <>
         <h1>Hello, {chosenPerson}</h1>

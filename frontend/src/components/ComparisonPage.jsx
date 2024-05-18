@@ -6,10 +6,10 @@ import AListMovieCard from "./AListMovieCard"
 
 export default function ComparisonPage({ users, chosenPerson }) {
 
-    // Fetch the slug
+    // Fetching the person from the slug. Not to be confused with the logged in user wich is stored in the chosenPerson. I may should have created a bit more different names.
     const {person} = useParams()
 
-    // useStates for all the movie items and genres
+    // useStates for all the movies and genres. Using items instead of movies cause the confusion is high. 1 is for the logged in user, 2 is for the friend.
     const [favoriteItems1, setFavoriteItems1] = useState([])
     const [favoriteItems2, setFavoriteItems2] = useState([])
 
@@ -47,25 +47,26 @@ export default function ComparisonPage({ users, chosenPerson }) {
     const genreList = genreItems1?.filter(item1 =>
         genreItems2?.some(item2 => item2.title === item1.title))
 
-    // The A-list
+    // The A-list. Again using filter and some, to filter out some of the movies. Then using map to open up the array of objects and adding keys and values for user/person and the list.
+    // A bit of help from ChatGPT with the idea of using map in this way.
     const newList = favoriteItems1
         ?.filter(item1 => 
         wishlistItems2?.some(item2 => item2.title === item1.title) &&
         !wishlistMoviesList?.some(movie => movie.title === item1.title) &&
         !favoriteMoviesList?.some(movie => movie.title === item1.title))
-        ?.map(movie => ({ ...movie, fromUser: chosenPerson, listType: 'Favorite'}))
+        ?.map(movie => ({ ...movie, fromUser: chosenPerson, fromList: 'Favorites'}))
 
     const newList2 = favoriteItems2
         ?.filter(item1 =>
         wishlistItems1?.some(item2 => item2.title === item1.title) &&
         !wishlistMoviesList?.some(movie => movie.title === item1.title) &&
         !favoriteMoviesList?.some(movie => movie.title === item1.title))
-        ?.map(movie => ({ ...movie, fromUser: person, listType: 'Favorites 2'}))
+        ?.map(movie => ({ ...movie, fromUser: person, fromList: 'Favorites'}))
 
-
+    // Concatinating the two lists into one
     const theAList = newList.concat(newList2)
 
-    console.log(theAList)
+    //console.log(theAList)
 
     return (
         <>

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
-// Create a cache for saved movie image urls
-
+// Almost the same as the MovieCard. Created a new cache for the movie url. I may regret not having the API call in App.jsx. Too late now.
 const AimageCache = {}
 
 export default function AListMovieCard({ movie }) {
@@ -40,15 +39,13 @@ export default function AListMovieCard({ movie }) {
       getMovieImage()
       }, [movie.imdb_id])
 
-
-
     return (
         <>
         <article className="movieCard">
             <Link to={`https://www.imdb.com/title/${movie.imdb_id}`} target="_blank">
                 <img src={movieImage} />
                 <h3>{`${movie.title} (${movie.year})`}</h3>
-                <p>{`from ${movie.fromUser}, and the list ${movie.listType}`}</p>
+                <p>{`from ${movie.fromUser}, and the list ${movie.fromList}`}</p>
             </Link>
         </article>
 

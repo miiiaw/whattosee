@@ -9,7 +9,6 @@ export const sanityClient = createClient({
 })
 
 
-
 export const writeClient = createClient({
     projectId: "pw0hwev7",
     dataset: "production",

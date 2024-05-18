@@ -9,6 +9,24 @@ body{
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: flex-start;
+                ul{
+                    padding: 15px;
+                    background-color: antiquewhite;
+                    li{
+                        margin: 10px;
+                        font-size: 1rem;
+                        list-style-type: circle;
+                        a{
+                            padding: 10px;
+                            color: #000000;
+                            text-decoration: none;
+                        }
+                        :hover{
+                            background-color: #DD5746;
+                            border-radius: 6px;
+                        }
+                    }
+                }
             }
         }
     }

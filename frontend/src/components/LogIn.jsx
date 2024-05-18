@@ -1,15 +1,8 @@
-import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 export default function LogIn({ users, setPerson }) {
 
-    useEffect(() => {
-        const storedPerson = localStorage.getItem('name')
-        if (storedPerson) {
-            setPerson(storedPerson)
-        }
-    }, [])
-
+    // Creating a function for setting the name/user choice and storing it in LocalStorage.
     const handleNameChoice = (name) => {
         setPerson(name)
         localStorage.setItem('name', name)

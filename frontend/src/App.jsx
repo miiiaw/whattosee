@@ -12,12 +12,13 @@ import { fetchAllMovies } from '../sanity/services/movieService'
 
 function App() {
 
-  // useState for the users
+  // useState for all the users
   const [users, setUsers] = useState([])
-  // useState for the movies
+  // useState for all the movies
   const [movies, setMovies] = useState([])
-  // useState for the chosen person, LS
+  // useState for the chosen person from LS
   const [chosenPerson, setPerson] = useState("")
+
 
   // Fetching all users from Sanity
   const getAllUsers = async () => {
@@ -31,9 +32,16 @@ function App() {
     setMovies(data)
   }
 
+  // Running the fetches and getting the user/name from LS, if there is one.
   useEffect(() => {
       getAllUsers()
       getAllMovies()
+
+      const storedPerson = localStorage.getItem('name')
+      if (storedPerson) {
+          setPerson(storedPerson)
+      }
+      
   }, [])
 
 

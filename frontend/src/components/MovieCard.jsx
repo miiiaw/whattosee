@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
-// Create a cache for saved movie image urls
+// Created a cache for saved movie image urls
 /* The image chache was ChatGPTs idea. I tried without it and everything did work fine, 
 and I preferred/wanted to have the API call in the movieCard component -- I admit it seemed most easy,
 and I think it makes the code more clean. But on the negative side, making an API call inside a component 

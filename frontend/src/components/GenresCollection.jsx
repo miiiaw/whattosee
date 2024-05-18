@@ -6,11 +6,12 @@ import { updateGenres } from '../../sanity/services/userService'
 
 export default function GenresCollection({ chosenPerson, users }) {
     
-    // useState for the specified user - used a useState for this in the Home.jsx too. Changed the names on this one just in case
+    // useState for the specified/chosen user - used a useState for this in the Home.jsx too. Changed the names on this one just in case theyd clash.
     const [loggedInUser, setLoggedInUser] = useState(null)
+    // useState for the list of genres
     const [genresList, setGenresList] = useState([])
     
-    // fetching all movie genres from Sanity
+    // Fetching all the movie genres from Sanity and putting them in the useState
     useEffect(() => {
         const getAllGenres = async () => {
             const data = await fetchAllGenres()
@@ -19,34 +20,23 @@ export default function GenresCollection({ chosenPerson, users }) {
         getAllGenres()
     }, [])
     
-    // using .find() to fetch and store the array with the right userinfo
+    // Using .find() to fetch and store the array with the right userinfo
     useEffect(() => {
         const name = users.find(user => user.name === chosenPerson)
         name ? setLoggedInUser(name) : null
     }, [users, chosenPerson])
 
-
-    // Function for updating Sanity
+    // Creating a function for calling the updateGenres from Sanity services, and update the userinfo with the result. Be patient with that one.
     const handleSubmit = async (genreId) => {
-        //console.log(genreId)
-        if (!loggedInUser) {
-            console.error("No logged in user")
-            return
-        }
-
-        //console.log(loggedInUser.name)
         const result = await updateGenres(loggedInUser._id, genreId)
-        //console.log(result)
 
         setLoggedInUser(result[0])
     }
 
-
+    // Creating a function to check which genres is in the users list, for use later in the button.
     const addedGenre = (genreTitle) => {
         return loggedInUser?.favoriteGenre?.some(g => g.title === genreTitle);
     }
-
-    //console.log(loggedInUser)
 
     
     return (
