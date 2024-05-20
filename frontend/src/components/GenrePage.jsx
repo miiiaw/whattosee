@@ -8,7 +8,7 @@ export default function Genre({ movies }) {
     // Creating a useSTate for the genre movies
     const [genreMovies, setGenreMovies] = useState([])
 
-    // Using filter to run through movies, and sort out the ones with matching genre title using some.
+    // Using filter to run through movies, and sort out the movies which has a matching genre title. Not quite sure if some() was the best tool to use, but it works.
     useEffect(() => {
         setGenreMovies(movies?.filter(movie =>
             movie.genre?.some(genre => genre.title === movieGenre)))

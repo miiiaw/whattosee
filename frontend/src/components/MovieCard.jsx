@@ -28,7 +28,7 @@ export default function MovieCard({ movie }) {
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
     }}
 
-    // Fetching the movie image urls and store them in the cache, IF theyre not already in there
+    // Checking if the imdb_id url of the movie is in the imageCache, if it is, setMovieImage with the url and return. If it is not, then fetch the imageUrl and store it in imageCache.
     useEffect(() => {
     const getMovieImage = async() => {
         if (imageCache[movie.imdb_id]) {

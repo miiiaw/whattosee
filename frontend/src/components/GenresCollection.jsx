@@ -33,7 +33,7 @@ export default function GenresCollection({ chosenPerson, users }) {
         setLoggedInUser(result[0])
     }
 
-    // Creating a function to check which genres is in the users list, for use later in the button.
+    // Creating a function to check for a genre title and if it is added in the users favorite genres.
     const addedGenre = (genreTitle) => {
         return loggedInUser?.favoriteGenre?.some(g => g.title === genreTitle);
     }
