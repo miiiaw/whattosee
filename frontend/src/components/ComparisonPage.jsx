@@ -21,19 +21,23 @@ export default function ComparisonPage({ users, chosenPerson }) {
 
 
     useEffect(() => {
-        // Fetching the userinfo array for each user
-        const user1 = users.find(user => user.name === chosenPerson)
-        const user2 = users.find(user => user.name === person)
-
-        // Saving the items in their states for later comparison
-        setFavoriteItems1(user1?.favoriteMovies)
-        setFavoriteItems2(user2?.favoriteMovies)
-
-        setWishlistItems1(user1?.wishlist)
-        setWishlistItems2(user2?.wishlist)
-
-        setGenreItems1(user1?.favoriteGenre)
-        setGenreItems2(user2?.favoriteGenre)
+        if (chosenPerson && person) {
+            // Fetching the userinfo array for each user, wrapped in a if-check to not crash if the chosenPerson is undefined at first render
+            const user1 = users.find(user => user.name === chosenPerson)
+            const user2 = users.find(user => user.name === person)
+            
+            // Saving the items in their states for later comparison, and again wrapped in a if-check.
+            if (user1 && user2) {
+                setFavoriteItems1(user1?.favoriteMovies)
+                setFavoriteItems2(user2?.favoriteMovies)
+                
+                setWishlistItems1(user1?.wishlist)
+                setWishlistItems2(user2?.wishlist)
+                
+                setGenreItems1(user1?.favoriteGenre)
+                setGenreItems2(user2?.favoriteGenre)
+            }
+        }
     }, [users, chosenPerson, person])
 
 
